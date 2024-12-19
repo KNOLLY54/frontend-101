@@ -1,0 +1,259 @@
+styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Navbar Styles */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color:#333;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    transition: background-color 0.3s ease;
+}
+
+.navbar:hover {
+    background-color:burlywood;
+}
+
+.navbar .logo {
+    width: 50px;
+    border-radius: 100px;
+    height: 50px;
+    transition: transform 0.3s ease;
+}
+
+.navbar .logo:hover {
+    transform: rotate(360deg);
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links li {
+    font-size: 1.2rem;
+}
+
+.nav-links a {
+    color: #fff;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #1e90ff;
+}
+.signup{
+    background-color:#1e90ff;
+    width: 120px;
+    height: 40px;
+    font-size: 20px;
+    border-radius: 10px;
+}
+
+/* Hero Section
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+background-image: url(/images/premium_photo-1683140655656-20448abc55da.jpg);
+    color: white;
+    text-align: center;
+    opacity: 0;
+    animation: fadeIn 1.5s forwards;
+} */
+ /* Hero Section */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-image: url('https://plus.unsplash.com/premium_photo-1683140655656-20448abc55da?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fHByb2dyYW1taW5nfGVufDB8fDB8fHww');
+    background-size: cover;          /* Ensure the image covers the entire section */
+    background-position: center;     /* Center the image */
+    color: white;
+    text-align: center;
+    
+    animation: fadeIn 1.5s forwards;
+}
+
+/* Fade-In Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.hero-content {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 2rem;
+    border-radius: 10px;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    animation: slideUp 1.5s ease-out;
+    color: burlywood;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    animation: slideUp 1.5s ease-out 0.5s;
+}
+
+.cta-button {
+    background-color: #1e90ff;
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #0073e6;
+}
+
+/* Footer Section */
+footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #333;
+    color: white;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+/* Smooth Scroll */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Scroll-to-Top Button */
+.scroll-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #1e90ff;
+    color: white;
+    border: none;
+    padding: 1rem;
+    font-size: 1.5rem;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    transition: opacity 0.3s ease;
+}
+
+.scroll-to-top:hover {
+    background-color: #0073e6;
+}
+
+/* Animation on Scroll */
+.fade-in {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.animated {
+    opacity: 1;
+}
+
+/* Navbar Responsive Styles */
+.navbar-toggle {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .navbar-toggle {
+        display: block;
+        background: none;
+        color: white;
+        font-size: 2rem;
+        border: none;
+        cursor: pointer;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        background-color: #333;
+        width: 100%;
+        text-align: center;
+        padding: 1rem;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links li {
+        padding: 1rem 0;
+    }
+}
+
+/* Bounce Animation for Logo */
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.bounce {
+    animation: bounce 0.5s ease infinite;
+}
+.as{
+    display: block;
+}

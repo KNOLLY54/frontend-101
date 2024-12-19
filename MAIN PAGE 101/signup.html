@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sign Up Form</title>
+        <link rel="stylesheet" href="./stylesheet/style.css">
+    </head>
+    <body>
+        <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up Form</title>
+    <link rel="stylesheet" href="./stylesheet/style.css">
+    <script defer src="./script.js"></script> <!-- Link to external JavaScript file -->
+</head>
+<body>
+
+
+<style>
+
+/* General styling for the page to center everything */
+body, html {
+  height: 100%; /* Ensure full height */
+  margin: 0; /* Remove default margin */
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  background-color: #f0f0f0; /* Light background color */
+  background-image: url('https://plus.unsplash.com/premium_photo-1683140655656-20448abc55da?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fHByb2dyYW1taW5nfGVufDB8fDB8fHww'); /* Add Fanta background image */
+  background-size: cover; /* Ensure the background image covers the entire page */
+  background-position: center center; /* Center the background image */
+  background-repeat: no-repeat; /* Prevent repeating the background image */
+}
+
+/* Styling for the form */
+.form {
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 320px;  /* Smaller width */
+
+  background-size: 400% 400%; /* Background size for any animation */
+  background-color: rgba(30, 144, 255, 0.5); /* Semi-transparent orange (RGBA) with 50% opacity */
+  transform: translateX(-100%); /* Start off-screen to the left */
+  opacity: 0; /* Start invisible */
+  animation: slideInAnimation 1s ease-out forwards; /* Apply slide-in animation */
+  animation-delay: 0.3s;
+}
+
+/* Keyframes for the sliding effect from left */
+@keyframes slideInAnimation {
+  0% {
+    transform: translateX(-100%); /* Start from left off-screen */
+    opacity: 0; /* Start invisible */
+  }
+  100% {
+    transform: translateX(0); /* Slide into place */
+    opacity: 1; /* Fade in */
+  }
+}
+
+/* Form Group Styling */
+.form-group {
+  margin-bottom: 20px;
+  position: relative;
+  padding: 10px;
+  margin-left: -10px;
+}
+
+.form-group label {
+  position: absolute;
+  top: -10px;
+  left: 10px;
+  font-size: 14px;
+  color: lime;
+  background-color: #f8f9fa;
+  padding: 0 5px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  color: #495057;
+}
+
+.form-group input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Error message styling */
+.error-message {
+  color: red;
+  font-size: 12px;
+}
+
+/* Error input styling */
+.error {
+  border: 1px solid red;
+}
+
+/* Checkbox Styling */
+.checkbox {
+  margin-bottom: 20px;
+}
+
+.checkbox input {
+  margin-right: 10px;
+}
+
+/* Button Styling */
+.submit-btn {
+  width: 100%;
+  padding: 15px;
+  font-size: 16px;
+  background-color: #0f1e61;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.submit-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Divider Styling */
+.divider {
+  margin: 20px 0;
+  border: 0;
+  border-top: 1px solid #ccc;
+}
+
+/* Small Text Styling */
+.terms {
+  display: block;
+  text-align: center;
+  font-size: 12px;
+  color: #6c757d;
+}
+
+/* Spinner Styling */
+.spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* General container for centering */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  position: relative;
+}
+
+/* Wrapper for the form */
+.form-wrapper {
+  width: 100%;
+  max-width: 320px;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: rgba(222, 184, 135, 0.5); /* Burlywood with 50% transparency */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  animation: slideInAnimation 1s ease-out forwards;
+}
+
+/* Spinner position inside the form */
+#loadingSpinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none; /* Hide spinner by default */
+}
+
+
+
+
+/* 
+TESTING WITH JS */
+
+/* General Styling for Form
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background-color: #f0f0f0;
+}
+
+.form-wrapper {
+  width: 100%;
+  max-width: 320px;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: rgba(255, 165, 0, 0.5); Semi-transparent orange
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  animation: slideInAnimation 1s ease-out forwards;
+}
+
+@keyframes slideInAnimation {
+  0% {
+      transform: translateX(-100%);
+      opacity: 0;
+  }
+  100% {
+      transform: translateX(0);
+      opacity: 1;
+  }
+}
+
+Input and Button Styling
+input, button {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+button {
+  background-color: #0f1e61;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.error {
+  border: 1px solid red;
+}
+
+Error message styling
+.error-message {
+  color: red;
+  font-size: 12px;
+}
+
+Spinner Styling
+.spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+Divider Styling
+.divider {
+  margin: 20px 0;
+  border: 0;
+  border-top: 1px solid #ccc;
+}
+
+Small Text Styling
+.terms {
+  display: block;
+  text-align: center;
+  font-size: 12px;
+  color: #6c757d;
+} */
+
+
+
+</style>
+
+
+
+    <div class="container">
+        <div class="form-wrapper">
+            <form id="signupForm" class="form">
+                <div class="form-group">
+                    <label for="floatingInput">Email address</label>
+                    <input type="email" id="floatingInput" placeholder="name@example.com" required>
+                    <small class="error-message" id="emailError"></small>
+                </div>
+                <div class="form-group">
+                    <label for="floatingPassword">Password</label>
+                    <input type="password" id="floatingPassword" placeholder="Password" required>
+                    <small class="error-message" id="passwordError"></small>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" value="remember-me"> Remember me
+                    </label>
+                </div>
+                <button class="submit-btn" type="button" onclick="window.location.href='payment.html';">Sign up</button>
+
+                <hr class="divider">
+                <small class="terms">By clicking Sign up, you agree to the terms of use.</small>
+                <div id="loadingSpinner" class="spinner" style="display:none;"></div> <!-- Loading spinner -->
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+
+          <script>
+           document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("signupForm");
+    const emailInput = document.getElementById("floatingInput");
+    const passwordInput = document.getElementById("floatingPassword");
+    const emailError = document.getElementById("emailError");
+    const passwordError = document.getElementById("passwordError");
+    const loadingSpinner = document.getElementById("loadingSpinner");
+
+    // Add submit event listener
+    form.addEventListener("submit", function (event) {
+        event.preventDefault(); // Prevent default form submission
+
+        // Clear previous error messages
+        emailError.textContent = '';
+        passwordError.textContent = '';
+
+        // Get form input values
+        const email = emailInput.value.trim();
+        const password = passwordInput.value.trim();
+
+        // Validate email
+        if (!validateEmail(email)) {
+            emailError.textContent = "Please enter a valid email address.";
+            emailInput.classList.add('error'); // Add red border
+            return;
+        } else {
+            emailInput.classList.remove('error'); // Remove red border if valid
+        }
+
+        // Validate password (ensure it's not empty and is at least 6 characters long)
+        if (password.length < 6) {
+            passwordError.textContent = "Password must be at least 6 characters long.";
+            passwordInput.classList.add('error'); // Add red border
+            return;
+        } else {
+            passwordInput.classList.remove('error'); // Remove red border if valid
+        }
+
+        // Show the loading spinner while processing (simulating a delay)
+        loadingSpinner.style.display = 'block';
+
+        // Simulate form submission delay (you can replace this with actual server request)
+        setTimeout(function () {
+            // Hide the spinner after processing
+            loadingSpinner.style.display = 'none';
+
+            // Redirect to another page on successful form submission
+            window.location.href = "success.html"; // Redirect to success page (replace with your URL)
+        }, 2000); // Simulated delay of 2 seconds (for loading spinner)
+    });
+
+    // Function to validate email using a regular expression
+    function validateEmail(email) {
+        const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+        return emailPattern.test(email);
+    }
+});
+
+          </script>
+          
+          
+</body>
+</html>

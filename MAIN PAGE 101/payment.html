@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Duplication with Light/Dark Mode</title>
+    <style>
+        /* Light Mode Styles */
+        :root {
+            --bg-color: #f4f4f9;
+            --text-color: #333;
+            --card-bg: #fff;
+            --button-bg: #007bff;
+            --button-hover: #0056b3;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+        }
+
+        /* Dark Mode Styles */
+        .dark-mode {
+            --bg-color: #121212;
+            --text-color: #f4f4f9;
+            --card-bg: #1e1e1e;
+            --button-bg: #1d72b8;
+            --button-hover: #16689a;
+            --shadow-color: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            max-width: 1200px;
+            margin: 20px auto;
+        }
+
+        .card {
+            width: 300px;
+            padding: 20px;
+            background-color: var(--card-bg);
+            box-shadow: 0 4px 8px var(--shadow-color);
+            border-radius: 8px;
+            text-align: center;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        .cardTitle {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .offerPrice {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .annualPrice {
+            margin-bottom: 10px;
+        }
+
+        .label {
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        .buttonGroup button {
+            margin: 5px;
+            padding: 10px 20px;
+            font-size: 14px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: var(--button-bg);
+            color: white;
+            transition: background-color 0.3s;
+        }
+
+        .buttonGroup button:hover {
+            background-color: var(--button-hover);
+        }
+
+        .toggle-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            font-size: 14px;
+            cursor: pointer;
+            background-color: var(--button-bg);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .toggle-btn:hover {
+            background-color: var(--button-hover);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Toggle Button -->
+    <button class="toggle-btn" id="toggleMode">Switch to Dark Mode</button>
+
+    <div class="card-container" id="cardContainer">
+        <!-- Cards will be dynamically added here -->
+    </div>
+
+    <script>
+        // Function to create a card
+        function createCard() {
+            return `
+                <div class="card">
+                    <div class="cardTitle">Essential</div>
+                    <div class="offerPrice">
+                        <ins class="mainPrice">$12.95</ins>
+                        <span>/ month</span>
+                    </div>
+                    <p class="annualPrice">$155.40 / year</p>
+                    <div class="label">
+                        <span>You save <strong>$24.00</strong> a year</span>
+                        <span title="Compared to paying monthly. The full monthly price is $14.95. The monthly price within the yearly subscription is $12.95.">ℹ</span>
+                    </div>
+                    <div class="buttonGroup">
+                        <button class="button large">Try free for 30 days</button>
+                        <button class="button medium">Learn More</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Get the container
+        const cardContainer = document.getElementById('cardContainer');
+
+        // Generate 10 cards
+        for (let i = 0; i < 10; i++) {
+            cardContainer.innerHTML += createCard();
+        }
+
+        // Toggle Light/Dark Mode
+        const toggleButton = document.getElementById('toggleMode');
+        let isDarkMode = false;
+
+        toggleButton.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            isDarkMode = !isDarkMode;
+            toggleButton.textContent = isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode";
+        });
+
+
+
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trading Platform | Front-End 101</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+
+
+<style>
+
+/* GLOBAL STYLES */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-image: url('./images/background.jpg');
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+    align-items: end;
+    overflow: hidden;
+}
+
+/* HEADER STYLES */
+.tv-header {
+    background-color: rgba(255, 255, 255, 0.05); /* Even more transparent */
+    /* Transparent background */
+    width: 100%;
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    
+    transition: all 0.3s ease-out;
+    animation: fadeInDown 1s ease-out;
+}
+
+.tv-header__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tv-header__logo {
+    font-size: 30px;
+    font-weight: bold;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: color 0.3s, transform 0.3s ease;
+    animation: slideInLeft 1s ease-out;
+}
+
+.tv-header__logo:hover {
+    color: #ff6f00;
+    transform: scale(1.1);
+}
+
+.tv-header__hamburger-menu {
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    
+}
+
+.tv-header__hamburger-menu svg {
+    width: 35px;
+    height: 35px;
+    fill: #fff;
+    transition: fill 0.3s, transform 0.3s ease;
+}
+
+.tv-header__hamburger-menu:hover svg {
+    fill: #ff6f00;
+    transform: rotate(90deg);
+}
+
+.tv-header__main-menu {
+    list-style: none;
+    display: flex;
+    transition: all 0.3s ease;
+}
+
+.tv-header__main-menu-item {
+    margin-right: 30px;
+    position: relative;
+    opacity: 0;
+    animation: fadeInUp 1.5s ease-out forwards;
+}
+
+.tv-header__main-menu-item:nth-child(1) {
+    animation-delay: 0.2s;
+}
+
+.tv-header__main-menu-item:nth-child(2) {
+    animation-delay: 0.4s;
+}
+
+.tv-header__main-menu-item:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+.tv-header__main-menu-item:nth-child(4) {
+    animation-delay: 0.8s;
+}
+
+.tv-header__main-menu-item a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    font-size: 16px;
+    position: relative;
+    transition: color 0.3s ease, transform 0.3s ease, letter-spacing 0.3s ease;
+}
+
+.tv-header__main-menu-item a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -5px;
+    background-color: #ff6f00;
+    height: 2px;
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s ease;
+}
+
+.tv-header__main-menu-item a:hover {
+    color: #00bcd4;
+    transform: translateY(-5px);
+}
+
+.tv-header__main-menu-item a:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+.tv-header__user-menu-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+    transition: color 0.3s ease;
+}
+
+.tv-header__user-menu-button svg {
+    width: 24px;
+    height: 24px;
+    fill: #fff;
+    transition: fill 0.3s ease;
+}
+
+.tv-header__user-menu-button:hover svg {
+    fill: #ff6f00;
+}
+
+.logo{
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+}
+
+/* TITLE AND DESCRIPTION */
+.title {
+    font-size:3rem ;
+    font-weight: bold;
+    text-align:left;
+    color:black;
+    letter-spacing: 5px;
+    animation: slideInUp 1.5s ease-out;
+    margin-top: 120px;
+}
+
+.first-slogan{
+    display: block;
+    font-size: 3rem;
+    align-items: end;
+    ;
+}
+.second-slogan{
+   color:linear-gradient(90deg, #00bcd4, #ff6f00) ; 
+}
+
+
+.description {
+    font-size: 20px;
+    font-weight: normal;
+    color: #ddd;
+    text-align: center;
+    animation: fadeInUp 1.5s ease-out;
+    margin-top: 15px;
+}
+
+/* CONTENT CONTAINER */
+.contentContainer {
+    text-align: left;
+    padding: 50px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    animation: fadeInUp 2s ease-out;
+    opacity: 5; /* Adjust value to make it less transparent */
+}
+
+.descriptionWrapper {
+    font-size: 25px;
+    color: orangered;
+    animation: fadeInUp 1.5s ease-out;
+    opacity: 5; /* Adjust value to make it less transparent */
+    background:  rgba(30, 144, 255, 0.5);
+    border-radius: 10px;
+    padding: 7px;
+}
+
+.actions {
+    margin-top: 30px;
+}
+
+.ctaButtonWrapper {
+    display: inline-block;
+    margin: 10px;
+}
+
+.ctaButton {
+    display: inline-block;
+    background: linear-gradient(90deg, #00bcd4, #ff6f00);
+    color: white;
+    padding: 18px 40px;
+    font-size: 20px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.ctaButton:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 20px rgba(0, 188, 212, 0.5);
+}
+
+.ctaInfo {
+    font-size: 14px;
+    color: #aaa;
+    margin-top: 10px;
+}
+
+/* AMBASSADOR BLOCK */
+.ambassadorBlock {
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.person {
+    display: inline-block;
+    position: relative;
+    text-align: center;
+}
+
+.person img {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    margin-bottom: 10px;
+    transition: transform 0.3s ease;
+}
+
+.person img:hover {
+    transform: scale(1.1);
+}
+
+.playButton {
+    background-color: #00bcd4;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.playButton:hover {
+    background-color: #ff6f00;
+}
+
+.selectContainer {
+    margin-top: 20px;
+}
+
+.selectButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.selectButton:hover {
+    background-color: #ddd;
+}
+
+.copyrightBlock {
+    margin-top: 50px;
+    font-size: 14px;
+    color: #888;
+}
+
+/* ARROW BUTTON */
+.arrow {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 80px;
+    height: 80px;
+    border-radius: 80px;
+    background-image: url(/images/Logo.png);
+    
+    cursor: pointer;
+    animation: bounce 2s infinite;
+   
+}
+
+/* ANIMATIONS */
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bounce {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+
+</style>
+
+
+
+
+<!-- NAVBAR -->
+<header class="tv-header">
+    <div class="tv-header__inner">
+        <div class="tv-header__area tv-header__area--logo-menu">
+
+                <img class="logo" src="./images/Logo.png" alt="Hamburger Menu" width="18" height="12">
+            
+           
+        </div>
+        <div class="tv-header__middle-wrapper">
+            <div class="tv-header__middle-content">
+                <div class="tv-header__area tv-header__area--search">
+                    <div class="tv-header-search-container">
+                      
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="tv-header__area tv-header__area--menu">
+            <ul class="tv-header__main-menu">
+                <li class="tv-header__main-menu-item">
+                    <a href="/chart/">Products</a>
+                </li>
+                <li class="tv-header__main-menu-item">
+                    <a href="/ideas/">Community</a>
+                </li>
+                <li class="tv-header__main-menu-item">
+                    <a href="/markets/">Markets</a>
+                </li>
+                <li class="tv-header__main-menu-item">
+                    <a href="/news/">News</a>
+                </li>
+                <li class="tv-header__main-menu-item">
+                    <a href="/brokers/">Brokers</a>
+                </li>
+                <li class="tv-header__main-menu-item">
+                    <a href="/support/">More</a>
+                </li>
+            </ul>
+        </nav>
+        <!-- <div class="tv-header__area tv-header__area--user">
+            <button class="tv-header__language-button">EN</button>
+            <button class="tv-header__user-menu-button">
+                <img src="images/user-menu-icon.png" alt="User Menu" width="28" height="28">
+            </button>
+        </div> -->
+    </div>
+</header>
+
+<!-- <h1 class="title">
+    <img src="images/slogan-first-part.png" alt="First Slogan Icon" class="slogan-icon first-part" width="50" height="50">
+    <span class="hidden-text"> / </span>
+    <img src="images/slogan-second-part.png" alt="Second Slogan Icon" class="slogan-icon second-part" width="50" height="50">
+    <p class="description">The best trades require research, then commitment.</p>
+</h1> -->
+
+<div class="contentContainer">
+    <h1 class="title">
+       <span class="first-slogan">Code the Future /</span>
+       
+        <span class="second-slogan">Design the Dream</span>
+       
+        <p class="descriptionWrapper description">The best trades require research, then commitment.</p>
+    </h1>
+    <div class="actions">
+        <div class="ctaButtonWrapper">
+      
+                <button class="ctaButton" type="button" onclick="window.location.href='index.html';">Get Started</button>
+                <!-- Get started  -->
+            
+        </div>
+        <span class="ctaInfo"></span>
+    </div>
+   
+    <p class="copyrightBlock">Website:: Front-End 101 ©</p>
+</div>
+
+<span class="arrow" aria-hidden="true">
+    <img src="./images/Logo.png" alt="Arrow Icon" width="25" height="25">
+</span>
+
+</body>
+</html>
